@@ -1,34 +1,44 @@
 'use strict';
 
 const assert = require('assert');
-const message = require('../index');
+const Message = require('../lib/message');
 
 describe('message', () => {
+    let message = new Message();
 
     it('zh - en', () => {
         message.register('zh');
         message.register('en');
 
-        message.type('zh');
+        message.switch('zh');
         message.append({
             foo: { bar: 'zh' },
         });
         message.add('v.n', '_zh');
 
-        message.type('en');
+        message.switch('en');
         message.append({
             foo: { bar: 'en' },
         });
         message.add('v.n', '_en');
 
-        message.type('zh');
-        assert.equal(message.get('foo.bar'), 'zh');
-        assert.equal(message.get('v.n'), '_zh');
-        assert.equal(message.get('v.n.a'), '');
+        message.switch('zh');
+        assert.equal(message.query('foo.bar'), 'zh');
+        assert.equal(message.query('v.n'), '_zh');
+        assert.equal(message.query('v.n.a'), '');
 
-        message.type('en');
-        assert.equal(message.get('foo.bar'), 'en');
-        assert.equal(message.get('v.n'), '_en');
-        assert.equal(message.get('v.n.a'), '');
+        message.switch('en');
+        assert.equal(message.query('foo.bar'), 'en');
+        assert.equal(message.query('v.n'), '_en');
+        assert.equal(message.query('v.n.a'), '');
+
+        message.subtract({
+            foo: { bar: 'en' },
+        });
+        message.remove('v.n');
+
+        assert.equal(message.query('foo.bar'), '');
+        assert.equal(message.query('v.n'), '');
+
     });
 });

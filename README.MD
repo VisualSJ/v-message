@@ -6,7 +6,8 @@
 ## 使用方法
 
 ```javascript
-const message = require('v-message');
+const Message = require('v-message');
+let message = new Message();
 
 // 注册信息类型
 message.register('zh');
@@ -33,5 +34,12 @@ message.get('header.title'); // 头部标题
 message.type('en');
 message.get('footer'); // footer
 message.get('header.title'); // header title
+
+message.subtract({
+    footer: 'footer',
+});
+message.remove('header.title');
+message.get('footer'); // ''
+message.get('header.title'); // ''
 
 ```
