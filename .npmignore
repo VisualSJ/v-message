@@ -1,0 +1,8 @@
+@*
+.*
+/dev/*.js
+/source
+/scripts
+/example
+/test
+/node_modules

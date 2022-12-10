@@ -1,12 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const utils = require('../lib/utils');
+const utils = require('../dev/utils');
 
 describe('utils', () => {
-
-    let target = {};
-    let reference = {
+    const target = {};
+    const reference = {
         array: [
             {
                 string: '',
@@ -26,6 +25,7 @@ describe('utils', () => {
         empty: null,
         miss: undefined,
     };
+
     it('deepCopyObject', () => {
         utils.deepCopyObject(target, reference);
         assert.equal(Array.isArray(target.array), true);

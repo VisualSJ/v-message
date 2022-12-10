@@ -1,10 +1,10 @@
 {
   "name": "v-message",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/message.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ./scripts/build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/VisualSJ/v-message/issues"
   },
-  "homepage": "https://github.com/VisualSJ/v-message#readme"
+  "homepage": "https://github.com/VisualSJ/v-message#readme",
+  "devDependencies": {
+    "esbuild": "^0.15.13"
+  },
+  "dependencies": {
+    "typescript": "^4.9.4"
+  }
 }

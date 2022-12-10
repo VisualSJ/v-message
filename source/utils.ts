@@ -1,12 +1,14 @@
 'use strict';
 
+type IObject = { [key: string]: any };
+
 /**
  * 深度复制
  * 在不影响传入 object 的情况下，将 obejct 内的数据，复制到 target 上
- * @param {*} target 
- * @param {*} object 
+ * @param target 
+ * @param object 
  */
-let deepCopyObject = function (target, object) {
+export function deepCopyObject(target: IObject, object: IObject) {
     Object.keys(object).forEach((key) => {
         let value = object[key];
         if (Array.isArray(value)) {
@@ -22,10 +24,10 @@ let deepCopyObject = function (target, object) {
 /**
  * 深度消除
  * 在不影响 object 的清况下，将 object 内包含的数据从 target 内剔除
- * @param {*} target 
- * @param {*} object 
+ * @param target 
+ * @param object 
  */
-let deepEliminateObject = function (target, object) {
+export function deepEliminateObject(target: IObject, object: IObject) {
     Object.keys(object).forEach((key) => {
         if (Array.isArray(object[key])) {
             delete target[key];
@@ -38,9 +40,4 @@ let deepEliminateObject = function (target, object) {
             delete target[key];
         }
     });
-};
-
-module.exports = {
-    deepCopyObject,
-    deepEliminateObject,
 };
