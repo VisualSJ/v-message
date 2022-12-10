@@ -8,7 +8,7 @@ interface MessageObject {
 
 export class Message {
     
-    private _map: {
+    public map: {
         [lang: string]: MessageObject;
     } = {};
 
@@ -19,7 +19,7 @@ export class Message {
      * @param {string} type 
      */
     register (type: string) {
-        this._map[type] = this._map[type] || {};
+        this.map[type] = this.map[type] || {};
         if (!this._language) {
             this._language = type;
         }
@@ -39,7 +39,7 @@ export class Message {
      * @param options 
      */
     append (object: MessageObject) {
-        const current = this._map[this._language];
+        const current = this.map[this._language];
         if (!current) {
             throw new Error('The specified type may not exist.');
         }
@@ -57,7 +57,7 @@ export class Message {
      * @param options 
      */
     subtract (object: MessageObject) {
-        const current = this._map[this._language];
+        const current = this.map[this._language];
         if (!current) {
             throw new Error('The specified type may not exist.');
         }
@@ -75,7 +75,7 @@ export class Message {
      * @param value 
      */
     add (key: string, value: MessageObject | string) {
-        const current = this._map[this._language];
+        const current = this.map[this._language];
         if (!current) {
             throw new Error('The specified type may not exist.');
         }
@@ -100,7 +100,7 @@ export class Message {
      * @param key 
      */
     remove (key: string) {
-        const current = this._map[this._language];
+        const current = this.map[this._language];
         if (!current) {
             throw new Error('The specified type may not exist.');
         }
@@ -126,7 +126,7 @@ export class Message {
      * @param {string} key 
      */
     query (key: string) {
-        const current = this._map[this._language];
+        const current = this.map[this._language];
         if (!current) {
             return '';
         }
@@ -150,7 +150,7 @@ export class Message {
      * @returns 
      */
     queryLanguages () {
-        return Object.keys(this._map);
+        return Object.keys(this.map);
     }
 
     /**
